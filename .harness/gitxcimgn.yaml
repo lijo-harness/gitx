@@ -33,7 +33,7 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: account.harnessImage
-                    image: nginx
+                    connectorRef: test
+                    image: gcr.io/customer-success-244100/zee:latest
                     shell: Sh
-                    command: <+input>
+                    command: pwd
