@@ -1,5 +1,6 @@
 inputSet:
   name: newagin
+  tags: {}
   identifier: newagin
   orgIdentifier: default
   projectIdentifier: CIrepro
@@ -26,7 +27,7 @@ inputSet:
                         spec:
                           resources:
                             limits:
-                              memory: 500Mi
+                              memory: <+input>
           - stage:
               identifier: res
               template:
@@ -41,5 +42,4 @@ inputSet:
                             spec:
                               resources:
                                 limits:
-                                  memory: 500Mi
-  object Object: pipeline.properties.ci.codebase
+                                  memory: <+input>
