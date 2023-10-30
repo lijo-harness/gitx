@@ -36,7 +36,9 @@ pipeline:
                     connectorRef: test
                     image: gcr.io/customer-success-244100/zee:latest
                     shell: Sh
-                    command: pwd
+                    command: |-
+                      echo <+trigger.branch>
+                      echo <+trigger.sourceBranch>
                     resources:
                       limits:
                         memory: <+input>.default(500Mi)
