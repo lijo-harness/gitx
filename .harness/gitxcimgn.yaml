@@ -42,4 +42,4 @@ pipeline:
                       echo <+trigger.sourceBranch>
                     resources:
                       limits:
-                        memory: <+input>.default(500Mi)
+                        memory: 2Gi
