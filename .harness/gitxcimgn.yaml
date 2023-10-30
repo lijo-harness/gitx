@@ -11,52 +11,32 @@ pipeline:
         repoName: test
         build: <+input>
   stages:
-    - parallel:
-        - stage:
-            name: test
-            identifier: test
-            description: ""
-            type: CI
+    - stage:
+        name: test
+        identifier: test
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
             spec:
-              cloneCodebase: true
-              infrastructure:
-                type: KubernetesDirect
-                spec:
-                  connectorRef: account.k8sconnector1
-                  namespace: delete-lijo
-                  automountServiceAccountToken: true
-                  nodeSelector: {}
-                  os: Linux
-              execution:
-                steps:
-                  - step:
-                      type: Run
-                      name: Run_1
-                      identifier: Run_1
-                      spec:
-                        connectorRef: test
-                        image: gcr.io/customer-success-244100/zee:latest
-                        shell: Sh
-                        command: pwd
-                        resources:
-                          limits:
-                            memory: <+input>.default(500Mi)
-        - stage:
-            name: res
-            identifier: res
-            template:
-              templateRef: codebase_stage
-              versionLabel: v1
-              gitBranch: main
-              templateInputs:
-                type: CI
-                spec:
-                  execution:
-                    steps:
-                      - step:
-                          identifier: Run_1
-                          type: Run
-                          spec:
-                            resources:
-                              limits:
-                                memory: <+input>.default(500Mi)
+              connectorRef: account.k8sconnector1
+              namespace: delete-lijo
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: test
+                    image: gcr.io/customer-success-244100/zee:latest
+                    shell: Sh
+                    command: pwd
+                    resources:
+                      limits:
+                        memory: <+input>.default(500Mi)
