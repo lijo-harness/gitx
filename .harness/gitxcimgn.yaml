@@ -37,6 +37,7 @@ pipeline:
                     image: gcr.io/customer-success-244100/zee:latest
                     shell: Sh
                     command: |-
+                      echo "this is from non master branch"
                       echo <+trigger.branch>
                       echo <+trigger.sourceBranch>
                     resources:
