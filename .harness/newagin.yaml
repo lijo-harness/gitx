@@ -13,33 +13,3 @@ inputSet:
             type: branch
             spec:
               branch: main
-    stages:
-      - parallel:
-          - stage:
-              identifier: test
-              type: CI
-              spec:
-                execution:
-                  steps:
-                    - step:
-                        identifier: Run_1
-                        type: Run
-                        spec:
-                          resources:
-                            limits:
-                              memory: <+input>
-          - stage:
-              identifier: res
-              template:
-                templateInputs:
-                  type: CI
-                  spec:
-                    execution:
-                      steps:
-                        - step:
-                            identifier: Run_1
-                            type: Run
-                            spec:
-                              resources:
-                                limits:
-                                  memory: <+input>
