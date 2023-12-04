@@ -1,0 +1,41 @@
+template:
+  name: delet_after_test
+  identifier: delet_after_test
+  versionLabel: v1
+  type: Stage
+  projectIdentifier: CIrepro
+  orgIdentifier: default
+  tags: {}
+  spec:
+    type: CI
+    spec:
+      cloneCodebase: false
+      platform:
+        os: Linux
+        arch: Amd64
+      runtime:
+        type: Cloud
+        spec: {}
+      execution:
+        steps:
+          - step:
+              type: Run
+              name: Run_1
+              identifier: Run_1
+              spec:
+                shell: Sh
+                command: |-
+                  pwd
+                  echo <+stage.variables.var1>
+              when:
+                stageStatus: Success
+                condition: <+stage.variables.var1> == "true"
+      caching:
+        enabled: false
+        paths: []
+    variables:
+      - name: var1
+        type: String
+        description: ""
+        required: false
+        value: <+input>
